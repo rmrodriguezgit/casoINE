@@ -1,6 +1,3 @@
-DROP databse IF EXISTS `ine`;
-CREATE DATABASE `ine`;
-
 USE ine;
 
 DROP TABLE IF EXISTS `credenciales`;
@@ -12,11 +9,13 @@ CREATE TABLE `credenciales` (
   `calle` varchar(100) NOT NULL,
   `colonia` varchar(100) NOT NULL,
   `cp` int NOT NULL,
-  `id_localidad` int NOT NULL FOREIGN KEY,
+  `id_localidad` int NOT NULL,
   `aRegistro` year NOT NULL,
   `vigencia` int NOT NULL,
   `seccion` varchar(4) NOT NULL,
-  `activo` tinyint(1) NOT NULL DEFAULT '1'
+  `activo` tinyint(1) NOT NULL DEFAULT '1',
+   FOREIGN KEY (id_localidad) REFERENCES Localidades(id)
+
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Tabla de Credenciales INE';
 
 INSERT INTO `credenciales` (`nombres`,`apellidoP`,`apellidoM`,`calle`,`colonia`,`cp`,`id_localidad`,`aRegistro`,
